@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IdentityServer.Data.Repositorios;
+using IdentityServer.Utilidades;
 using IdentityServer3.Core.Models;
 using IdentityServer3.Core.Services;
 using IdentityServer3.Core.Services.Default;
@@ -12,15 +13,16 @@ namespace IdentityServer
 {
     public class UserService : UserServiceBase
     {
-	    private readonly IUserRepositorio _userRepository;
+	    private readonly IUsuarioRepositorio _userRepository;
 
-	    public UserService(IUserRepositorio userRepository)
+	    public UserService(IUsuarioRepositorio userRepository)
 	    {
 		    _userRepository = userRepository;
 	    }
 	    public override async Task AuthenticateLocalAsync(LocalAuthenticationContext context)
 	    {
-		    var user = await _userRepository.GetAsync(context.UserName, context.Password); //TODO use HashHelper.Sha512 with key + salt
+		    var user = _userRepository.GetUsuario(context.UserName,
+                HashHelper.Sha512(context.Password + context.UserName));
 
 		    if (user == null)
 		    {

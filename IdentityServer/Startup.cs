@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
+using IdentityServer.Data.Repositorios;
 using IdentityServer3.Core.Configuration;
 using IdentityServer3.Core.Models;
 using IdentityServer3.Core.Services;
@@ -29,7 +30,10 @@ namespace IdentityServer
 			var factory = new IdentityServerServiceFactory();
 			factory.RegisterConfigurationServices(efOptions);
 			factory.RegisterOperationalServices(efOptions);
-			factory.UserService = new Registration<IUserService>();
+			factory.UserService = new Registration<IUserService>(typeof(UserService));
+            factory.Register(new Registration<IUsuarioRepositorio>());
+
+            new TokenCleanup(efOptions, 2).Start();
 
 			var certificate = Convert.FromBase64String(ConfigurationManager.AppSettings["SigningCertificate"]);
 
