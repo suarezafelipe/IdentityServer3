@@ -51,20 +51,21 @@ namespace IdentityServer
 		    {
 			    new Client
 			    {
-				    ClientId = "alquilarauto",
-				    ClientSecrets = new List<Secret>
-				    {
-					    new Secret("secret".Sha512())
-				    },
-				    ClientName = "AlquilarAuto",
-				    Flow = Flows.Hybrid,
-				    AllowedScopes = new List<string>
-				    {
-					    Constants.StandardScopes.OpenId,
-					    "admin",
-						"user"
-				    },
-					Enabled = true
+				    ClientId = "socialnetwork",
+                    ClientSecrets = new List<Secret>
+                    {
+                        new Secret("secret".Sha256())
+                    },
+                    ClientName = "SocialNetwork",
+                    Flow = Flows.ResourceOwner,
+                    AllowedScopes = new List<string>
+                    {
+                        Constants.StandardScopes.OpenId,
+                        Constants.StandardScopes.Profile,
+                        Constants.StandardScopes.OfflineAccess,
+                        "read"
+                    },
+                    Enabled = true
 			    }
 		    };
 	    }

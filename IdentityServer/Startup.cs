@@ -15,13 +15,13 @@ using Owin;
 
 namespace IdentityServer
 {
-	public class Startup
+    public class Startup
 	{
 		public void Configuration(IAppBuilder app)
 		{
 			var efOptions = new EntityFrameworkServiceOptions
 			{
-				ConnectionString = ConfigurationManager.ConnectionStrings["IdentityServerDb"].ConnectionString
+				ConnectionString = ConfigurationManager.ConnectionStrings["IdSvr3Config"].ConnectionString
 			};
 
 			SetupClients(InMemoryManager.GetClients(), efOptions);
@@ -30,8 +30,8 @@ namespace IdentityServer
 			var factory = new IdentityServerServiceFactory();
 			factory.RegisterConfigurationServices(efOptions);
 			factory.RegisterOperationalServices(efOptions);
-			factory.UserService = new Registration<IUserService>(typeof(UserService));
-            factory.Register(new Registration<IUsuarioRepositorio>());
+            factory.UserService = new Registration<IUserService>(typeof(UserService));
+            factory.Register(new Registration<IUsuarioRepositorio>(typeof(UsuarioRepositorio)));
 
             new TokenCleanup(efOptions, 2).Start();
 

@@ -105,6 +105,21 @@
     <Compile Include="Data\Repositorios\IUsuarioRepositorio.cs" />
     <Compile Include="Data\Repositorios\UsuarioRepositorio.cs" />
     <Compile Include="InMemoryManager.cs" />
+    <Compile Include="Migrations\ClientConfiguration\201809120245445_InitialCreate.cs" />
+    <Compile Include="Migrations\ClientConfiguration\201809120245445_InitialCreate.Designer.cs">
+      <DependentUpon>201809120245445_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\ClientConfiguration\Configuration.cs" />
+    <Compile Include="Migrations\OperationalConfiguration\201809120246061_InitialCreate.cs" />
+    <Compile Include="Migrations\OperationalConfiguration\201809120246061_InitialCreate.Designer.cs">
+      <DependentUpon>201809120246061_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\OperationalConfiguration\Configuration.cs" />
+    <Compile Include="Migrations\ScopeConfiguration\201809120242032_InitialCreate.cs" />
+    <Compile Include="Migrations\ScopeConfiguration\201809120242032_InitialCreate.Designer.cs">
+      <DependentUpon>201809120242032_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\ScopeConfiguration\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="UserService.cs" />
@@ -120,7 +135,17 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\ClientConfiguration\201809120245445_InitialCreate.resx">
+      <DependentUpon>201809120245445_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\OperationalConfiguration\201809120246061_InitialCreate.resx">
+      <DependentUpon>201809120246061_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\ScopeConfiguration\201809120242032_InitialCreate.resx">
+      <DependentUpon>201809120242032_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
